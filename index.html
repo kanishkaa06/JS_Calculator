@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+ 
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+     
+    body {
+        width: 100%;
+        height: 100vh;
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .calculator {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(83, 137, 12);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #display {
+        background-color: beige;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        width: 300px;
+        height: 100x;
+        color: purple;
+        font-size: 45px;
+        text-align: right;
+        padding: 10px;   
+    }
+
+    .allbuttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mycol {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mybtn1 {
+        background-color: beige;
+        border-radius: 50%;
+        border: none;
+        margin: 5px;
+        color: black;
+        font-size: 25px;
+        padding: 10px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .mybtn2 {
+        background-color: beige;
+        border-radius: 50%;
+        border: none;
+        margin: 5px;
+        color: black;
+        font-size: 25px;
+        padding: 10px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .mybtn3 {
+        background-color: rgb(145, 209, 82);
+        border-radius: 50%;
+        border: none;
+        margin: 5px;
+        color: black;
+        font-size: 25px;
+        padding: 10px;
+        width: 70px;
+        height: 70px;
+    }
+
+    .mybtn4 {
+        background-color: rgb(156, 155, 155);
+        border-radius: 50%;
+        border: none;
+        margin: 5px;
+        color: black;
+        font-size: 25px;
+        padding: 10px;
+        width: 70px;
+        height: 70px;
+    }
+</style> 
+
+ <body>
+    <h1>My Page</h1>
+     <!-- AC () % / -->
+    <!-- 7 8 9 + -->
+    <!-- 4 5 6 - -->
+    <!-- 1 2 3 * -->
+    <!-- 0 . < = -->
+    <div class="calculator">
+        <input id="display">
+        <div class="allbuttons">
+            <div class="mycol"> 
+                <div class="row">
+                    <button class="mybtn4" onclick="addtodisplay('AC')">AC</button>
+                    <button class="mybtn4" onclick="addtodisplay('()')">( )</button>
+                    <button class="mybtn4" onclick="addtodisplay('%')">%</button>
+               </div>
+        
+                <div class="my row">
+                     <button class="mybtn2" onclick="addtodisplay('7')">7</button>
+                    <button class="mybtn2" onclick="addtodisplay('8')">8</button>
+                    <button class="mybtn2" onclick="addtodisplay('9')">9</button>
+               </div>
+                 <div class="myrow">
+                    <button  class="mybtn2" onclick="addtodisplay('4')">4</button>
+                    <button  class="mybtn2" onclick="addtodisplay('5')">5</button>
+                    <button  class="mybtn2" onclick="addtodisplay('6')">6</button>
+                </div>
+
+                <div class="my row">
+                     <button  class="mybtn2" onclick="addtodisplay('1')">1</button>
+                     <button  class="mybtn2" onclick="addtodisplay('2')">2</button>
+                     <button  class="mybtn2" onclick="addtodisplay('3')">3</button>
+                 </div>
+          
+                <div class="my row">
+                    <button  class="mybtn2" onclick="addtodisplay('0')">0</button>
+                    <button  class="mybtn2" onclick="addtodisplay('.')">.</button>
+                    <button  class="mybtn3" onclick="addtodisplay('back')">&lt;</button>
+                </div>
+            </div>
+                 <div class="mycol"> 
+                     <button class="mybtn3" onclick="addtodisplay('/')">/</button>
+                     <button class="mybtn3" onclick="addtodisplay('+')">+</button>
+                     <button class="mybtn3" onclick="addtodisplay('-')">-</button>
+                     <button class="mybtn3" onclick="addtodisplay('*')">*</button>
+                     <button class="mybtn3" onclick="addtodisplay('=')">=</button>
+                 </div>
+            </div>
+     </div>
+</body>
+
+<script>
+
+let bracketflag = 0;
+const addtodisplay = (myval)=> {
+    let display = document.getElementById("display");
+    if (myval == "AC") {
+        display.value = "";
+        bracketflag = 0;
+    }
+    else if (myval == "back") { 
+        display.value = display.value.slice(0,-1);
+    }
+    else if (myval == "()") {
+        if (bracketflag == 0) {
+            display.value += "(";
+            bracketflag = 1;
+        }
+        else if (bracketflag == 1) {
+            display.value += ")";
+            bracketflag = 0;
+        }
+    
+    }
+    else if (myval == "=") {
+       try{ 
+         display.value = eval(display.value);
+    }
+    catch {
+         display.value = "Invalid Format";
+    }
+}
+    else {
+        display.value += myval;
+    }
+}
+
+
+</script>
+</html> 
+
+
+
+
+
